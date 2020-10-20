@@ -19,9 +19,9 @@ func setCookie(serverResp http.ResponseWriter, incReq *http.Request) {
 }
 
 func getCookie(serverResp http.ResponseWriter, incReq *http.Request) {
-	a := incReq.Cookies()
-	if a[1].Value != "" {
-		fmt.Fprintf(serverResp, "Hi %s", a[1].Value)
+	extractedCookies := incReq.Cookies()
+	if extractedCookies[1].Value != "" {
+		fmt.Fprintf(serverResp, "Hi %s", extractedCookies[1].Value) //need more cookies
 	} else {
 		serverResp.Write([]byte("Visit root page to set cookie"))
 	}

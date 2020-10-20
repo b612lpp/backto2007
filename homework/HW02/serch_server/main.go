@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -63,12 +62,13 @@ func searchEngine(searchReqestStruct dataStruct) []byte {
 func getBody(site string) string {
 	req, reqErr := http.Get(site)
 	if reqErr != nil {
-		fmt.Println(reqErr)
+		log.Println(reqErr)
 	}
 	body, bodyErr := ioutil.ReadAll(req.Body)
 	if bodyErr != nil {
-		fmt.Println(bodyErr)
+		log.Println(bodyErr)
 	}
 	bodyStr := string(body)
+	req.Body.Close()
 	return bodyStr
 }
