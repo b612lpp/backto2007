@@ -64,11 +64,12 @@ func getBody(site string) string {
 	if reqErr != nil {
 		log.Println(reqErr)
 	}
+	defer req.Body.Close()
 	body, bodyErr := ioutil.ReadAll(req.Body)
 	if bodyErr != nil {
 		log.Println(bodyErr)
 	}
 	bodyStr := string(body)
-	req.Body.Close()
+
 	return bodyStr
 }
