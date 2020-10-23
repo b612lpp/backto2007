@@ -21,7 +21,7 @@ func main() {
 }
 
 func searchString(v, sw string, wg *sync.WaitGroup) {
-
+	defer wg.Done()
 	resp, err := http.Get(v)
 	if err != nil {
 		fmt.Println(err)
@@ -35,18 +35,18 @@ func searchString(v, sw string, wg *sync.WaitGroup) {
 	} else {
 		fmt.Println("false", v)
 	}
-	defer wg.Done()
+
 }
 func getStringToSearch() (t string) {
 
 	fmt.Println("Let us know what should be found")
 	fmt.Scanln(&t)
-	return
+	return t
 }
 func getPagesToSearch() (p []string) {
 	var str string
 	fmt.Println("Please, specify pages should be checked. BE NOTIFIED: pages must be separated by comma like https://ya.ru,https://google.com")
 	fmt.Scan(&str)
 	p = strings.Split(str, ",")
-	return
+	return p
 }
