@@ -1,3 +1,8 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+
+{{define "ShowPost"}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +13,30 @@
 </head>
 
 <body>
-    {{define "ShowPost"}}
-    <h1>{{.Title}}</h1>
-    <p>{{.Text}}</p>
+    <article class="uk-article">
+
+        <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{.Title}}</a></h1>
+
+        <p class="uk-article-meta">Written by <a href="#">Super User</a> on 12 April 2012. Posted in <a
+                href="#">Blog</a></p>
+
+        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip.</p>
+
+        <p>{{.Text}}</p>
+
+        <div class="uk-grid-small uk-child-width-auto" uk-grid>
+            <div>
+                <a class="uk-button uk-button-text" href="#">Read more</a>
+            </div>
+            <div>
+                <a class="uk-button uk-button-text" href="#">5 Comments</a>
+            </div>
+        </div>
+
+    </article>
+
     {{end}}
 </body>
 

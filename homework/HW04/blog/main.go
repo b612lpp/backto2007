@@ -1,7 +1,7 @@
 package main
 
 import (
-	"backto2007/homework/HW04/tmp/blog/posts"
+	"backto2007/homework/HW04/blog/posts"
 	"log"
 	"net/http"
 	"strconv"
