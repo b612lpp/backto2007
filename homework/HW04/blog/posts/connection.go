@@ -9,7 +9,7 @@ import (
 
 var db *sql.DB
 
-//OpenConnection gets connection string and do connect
+//OpenConnection gets connection string and does connect
 func OpenConnection(connectionString string) {
 	var err error
 	db, err = sql.Open("mysql", connectionString)

@@ -53,7 +53,6 @@ func InsertNewPost(ID int, Title, Text string) {
 
 //UpdatetNewPost updates existing post
 func UpdatetNewPost(ID int, Title, Text string) {
-	fmt.Println(ID)
 	updReq, err := db.Prepare("update posts set title=?, tetxt=? where id=?")
 	if err != nil {
 		panic(err.Error())
