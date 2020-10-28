@@ -51,6 +51,20 @@ func InsertNewPost(ID int, Title, Text string) {
 
 }
 
+//UpdatetNewPost updates existing post
+func UpdatetNewPost(ID int, Title, Text string) {
+	fmt.Println(ID)
+	updReq, err := db.Prepare("update posts set title=?, tetxt=? where id=?")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	updReq.Exec(Title, Text, ID)
+
+	defer db.Close()
+
+}
+
 //GetLastID does what it must. There is no autoincrement so we assign new ID by hands
 func GetLastID() (NewPostID int) {
 	lastPostIDReq := db.QueryRow("select max(id) from posts;")

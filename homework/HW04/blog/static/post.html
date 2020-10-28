@@ -10,6 +10,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #editBtn:hover {
+            height: 40px;
+            width: 120px;
+            text-align: center;
+            padding-top: 10px;
+            background-color: coral;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -36,6 +46,25 @@
         </div>
 
     </article>
+    <script>function hideFunc() { document.getElementById("form").hidden = false; }</script>
+    <div id="editBtn" onclick="hideFunc()">Edit post?</div>
+    <div>
+        <form id="form" action="http://127.0.0.1:8080/addpost" method="GET" hidden=true>
+            <div>
+                <label for="Title">Title?</label>
+                <input name="Title" id="Title" value="{{.Title}}">
+                <input name="Edit" id="Edit" value="true" hidden=true>
+                <input name="id" id="id" value={{.ID}} hidden=true>
+            </div>
+            <div>
+                <label for="Text">Text?</label>
+                <input name="Text" id="Text" value="{{.Text}}">
+            </div>
+            <div>
+                <button>Send my awesome post</button>
+            </div>
+        </form>
+    </div>
 
     {{end}}
 </body>
