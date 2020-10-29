@@ -9,10 +9,15 @@ import (
 
 var db *sql.DB
 
+//Connector make connect to db an
+type Connector interface {
+	OpenConnection()
+}
+
 //OpenConnection gets connection string and does connect
-func OpenConnection(connectionString string) {
+func (v ConnData) OpenConnection() {
 	var err error
-	db, err = sql.Open("mysql", connectionString)
+	db, err = sql.Open(v.Driver, v.ConnStr)
 	if err != nil {
 		log.Panic(err)
 	}
@@ -20,4 +25,5 @@ func OpenConnection(connectionString string) {
 	if err = db.Ping(); err != nil {
 		log.Panic(err)
 	}
+
 }

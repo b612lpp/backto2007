@@ -8,7 +8,8 @@ import (
 	"text/template"
 )
 
-var connectionString string = "root:password@tcp(127.0.0.1:3306)/blog"
+//variable contains service type. depens on the type db connection parameters are requesting
+var servicename string = "blog"
 
 func main() {
 
@@ -20,8 +21,9 @@ func main() {
 
 }
 
+//shows all titles as URL
 func mainPage(servResp http.ResponseWriter, reqHand *http.Request) {
-	posts.OpenConnection(connectionString)
+	posts.GetConnParams(servicename).OpenConnection()
 	Zz := posts.GetPostsList()
 
 	tmpl := template.Must(template.New("first").ParseFiles("static/main.html"))
@@ -30,17 +32,19 @@ func mainPage(servResp http.ResponseWriter, reqHand *http.Request) {
 
 }
 
+//Shows single post by specified id
 func showPost(servResp http.ResponseWriter, reqHand *http.Request) {
 	tmpl := template.Must(template.New("first").ParseFiles("static/post.html"))
-	posts.OpenConnection(connectionString)
+	posts.GetConnParams(servicename).OpenConnection()
 	getIDStr := reqHand.URL.Query().Get("id")
 	getIDInt, _ := strconv.Atoi(getIDStr)
-	Qq := posts.GetPostByParam(getIDInt)
-	_ = tmpl.ExecuteTemplate(servResp, "ShowPost", Qq)
+	postRequestedByID := posts.GetPostByParam(getIDInt)
+	_ = tmpl.ExecuteTemplate(servResp, "ShowPost", postRequestedByID)
 }
 
+//Handler gets request with parameters. "editCheck = true" means existing post with specified ID is updating. If there is no parameter handler creates new post
 func addPost(servResp http.ResponseWriter, reqHand *http.Request) {
-	posts.OpenConnection(connectionString)
+	posts.GetConnParams(servicename).OpenConnection()
 	editCheck := reqHand.FormValue("Edit")
 	newPostTitle := reqHand.FormValue("Title")
 	newPostText := reqHand.FormValue("Text")
