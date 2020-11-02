@@ -1,0 +1,72 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+
+{{define "ShowPost"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #editBtn:hover {
+            height: 40px;
+            width: 120px;
+            text-align: center;
+            padding-top: 10px;
+            background-color: coral;
+
+        }
+    </style>
+</head>
+
+<body>
+    <article class="uk-article">
+
+        <h1 class="uk-article-title"><a class="uk-link-reset" href="">{{.Title}}</a></h1>
+
+        <p class="uk-article-meta">Written by <a href="#">Super User</a> on 12 April 2012. Posted in <a
+                href="#">Blog</a></p>
+
+        <p class="uk-text-lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+            laboris nisi ut aliquip.</p>
+
+        <p>{{.Text}}</p>
+
+        <div class="uk-grid-small uk-child-width-auto" uk-grid>
+            <div>
+                <a class="uk-button uk-button-text" href="#">Read more</a>
+            </div>
+            <div>
+                <a class="uk-button uk-button-text" href="#">5 Comments</a>
+            </div>
+        </div>
+
+    </article>
+    <script>function hideFunc() { document.getElementById("form").hidden = false; }</script>
+    <div id="editBtn" onclick="hideFunc()">Edit post?</div>
+    <div>
+        <form id="form" action="http://127.0.0.1:8080/addpost" method="GET" hidden=true>
+            <div>
+                <label for="Title">Title?</label>
+                <input name="Title" id="Title" value="{{.Title}}">
+                <input name="Edit" id="Edit" value="true" hidden=true>
+                <input name="id" id="id" value={{.ID}} hidden=true>
+            </div>
+            <div>
+                <label for="Text">Text?</label>
+                <input name="Text" id="Text" value="{{.Text}}">
+            </div>
+            <div>
+                <button>Send my awesome post</button>
+            </div>
+        </form>
+    </div>
+
+    {{end}}
+</body>
+
+</html>

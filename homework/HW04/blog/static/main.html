@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/js/uikit-icons.min.js"></script>
+{{define "PostTmpl"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #qq:hover {
+            height: 40px;
+            width: 120px;
+            text-align: center;
+            padding-top: 10px;
+            background-color: coral;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width: 100%; height: 100; border: 1px;">Shapka-Panamka</div>
+    <div>
+        <H1>blog main page</H1>
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    {{range .}}
+    <div style="height: 50px; padding-left: 30px;"><a href="http://127.0.0.1:8080/post?id={{.ID}}">{{.Title}}</a> </div>
+    {{end}}
+    <script>function hideFunc() { document.getElementById("form").hidden = false; }</script>
+    <div id="qq" onclick="hideFunc()">New post?</div>
+    <div>
+        <form id="form" action="http://127.0.0.1:8080/addpost" method="GET" hidden=true>
+            <div>
+                <label for="Title">Title?</label>
+                <input name="Title" id="Title" value="Title">
+            </div>
+            <div>
+                <label for="Text">Text?</label>
+                <input name="Text" id="Text" value="Text">
+            </div>
+            <div>
+                <button>Send my awesome post</button>
+            </div>
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>
+{{end}}
