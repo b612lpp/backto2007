@@ -7,14 +7,10 @@ import (
 	"text/template"
 )
 
-//variable contains service type. depens on the type db connection parameters are requesting
-var servicename string = "blog"
-
 func main() {
 
 	router := http.NewServeMux()
 	router.HandleFunc("/", mainPage)
-
 	router.HandleFunc("/post", showPost)
 	router.HandleFunc("/addpost", addPost)
 	log.Fatal(http.ListenAndServe("127.0.0.1:8080", router))
@@ -38,7 +34,7 @@ func showPost(servResp http.ResponseWriter, reqHand *http.Request) {
 	_ = tmpl.ExecuteTemplate(servResp, "ShowPost", postRequestedByID)
 }
 
-//Handler gets request with parameters. "editCheck = true" means existing post with specified ID is updating. If there is no parameter handler creates new post
+//Handler gets request with parameters. "editCheck = true" means existing post with specified ID is beeing updated. If there is no parameter handler creates new post
 func addPost(servResp http.ResponseWriter, reqHand *http.Request) {
 
 	editCheck := reqHand.FormValue("Edit")
